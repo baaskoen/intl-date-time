@@ -82,6 +82,10 @@
                 type: [Date, Object],
                 default: null,
             },
+            disableWeekends: {
+                type: Boolean,
+                default: false
+            }
         },
 
         data() {
@@ -227,6 +231,14 @@
 
             if (this.field.firstDayOfWeek !== undefined && !isNaN(Number(this.field.firstDayOfWeek))) {
                 config.locale.firstDayOfWeek = Number(this.field.firstDayOfWeek)
+            }
+
+            if (this.field.disableWeekends) {
+                config.disable = [
+                    function(date) {
+                        return (date.getDay() === 0 || date.getDay() === 6);
+                    }
+                ];
             }
 
             this.$nextTick(() => {

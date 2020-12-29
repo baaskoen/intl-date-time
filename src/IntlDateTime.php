@@ -360,6 +360,16 @@ class IntlDateTime extends DateTime
     }
 
     /**
+     * @param bool $value
+     * @return IntlDateTime
+     */
+    public function disableWeekends(bool $value = true): IntlDateTime
+    {
+        return $this->withMeta(['disableWeekends' => $value]);
+    }
+
+
+    /**
      * @param $placeholder
      * @return mixed
      */
